@@ -1,876 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <meta name="theme-color" content="#FF69B4">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>My Favorite Picture of You ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Great+Vibes&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            user-select: none;
-        }
-        
-        body {
-            min-height: 100vh;
-            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 50%, #FFDAB9 100%);
-            font-family: 'Dancing Script', cursive;
-            overflow-x: hidden;
-            touch-action: pan-y;
-            position: relative;
-        }
-        
-        /* Simplified floating elements - fewer for mobile */
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .sparkle, .floating-heart {
-            position: absolute;
-            will-change: transform;
-            animation-fill-mode: forwards;
-        }
-        
-        .sparkle {
-            color: rgba(255, 255, 255, 0.7);
-            animation: sparkleFloat 8s infinite linear;
-            font-size: 16px;
-        }
-        
-        @keyframes sparkleFloat {
-            0% { 
-                transform: translate3d(0, 100vh, 0) rotate(0deg); 
-                opacity: 0; 
-            }
-            10%, 90% { 
-                opacity: 0.7; 
-            }
-            100% { 
-                transform: translate3d(10px, -20px, 0) rotate(180deg); 
-                opacity: 0; 
-            }
-        }
-        
-        .floating-heart {
-            color: rgba(255, 20, 147, 0.6);
-            font-size: 18px;
-            animation: heartFloat 10s infinite linear;
-        }
-        
-        @keyframes heartFloat {
-            0% { 
-                transform: translate3d(0, 100vh, 0) rotate(0deg); 
-                opacity: 0; 
-            }
-            10%, 90% { 
-                opacity: 0.6; 
-            }
-            100% { 
-                transform: translate3d(-20px, -30px, 0) rotate(90deg); 
-                opacity: 0; 
-            }
-        }
-        
-        .container {
-            position: relative;
-            z-index: 2;
-            max-width: 100%;
-            margin: 0 auto;
-            padding: 30px 20px 60px;
-            text-align: center;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Optimized title - simpler animation */
-        .title {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(32px, 8vw, 56px);
-            font-weight: 400;
-            color: #FFFFFF;
-            text-shadow: 
-                0 0 15px rgba(255, 105, 180, 0.8),
-                2px 2px 6px rgba(0, 0, 0, 0.5);
-            margin-bottom: 40px;
-            line-height: 1.1;
-            position: relative;
-            z-index: 100;
-            letter-spacing: 1px;
-            text-align: center;
-            width: 100%;
-            will-change: transform;
-        }
-        
-        /* Simple sparkle - no complex animation on mobile */
-        .title::after {
-            content: '✨';
-            position: absolute;
-            right: -20px;
-            top: -15px;
-            font-size: 0.6em;
-            color: #FFD700;
-            opacity: 0.8;
-        }
-        
-        .photo-container {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 40px;
-        }
-        
-        /* Simplified aura - no animation on mobile */
-        .dreamy-aura {
-            position: absolute;
-            width: 120%;
-            height: 120%;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0);
-            border-radius: 50%;
-            background: radial-gradient(circle, 
-                rgba(255, 182, 193, 0.2) 0%, 
-                rgba(255, 105, 180, 0.1) 50%, 
-                transparent 80%);
-        }
-        
-        .heart-frame {
-            width: clamp(350px, 85vw, 550px);
-            height: clamp(300px, 75vw, 460px);
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        /* Optimized heart shape - simplified animation */
-        .heart-shape {
-            position: absolute;
-            width: 100%;
-            height: 90%;
-            top: 5%;
-            left: 0;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
-            border-radius: 50px 50px 0 50px;
-            transform: rotate(-45deg);
-            transform-origin: center center;
-            box-shadow: 
-                0 0 30px rgba(255, 105, 180, 0.6),
-                inset 0 0 20px rgba(255, 255, 255, 0.2);
-            z-index: 1;
-            will-change: transform;
-        }
-        
-        .heart-shape::before {
-            content: '';
-            position: absolute;
-            width: 52%;
-            height: 80%;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
-            border-radius: 50px 50px 0 0;
-            transform: rotate(-45deg);
-            top: -25%;
-            left: 50%;
-            transform-origin: 0 100%;
-        }
-        
-        .heart-shape::after {
-            content: '';
-            position: absolute;
-            width: 52%;
-            height: 80%;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
-            border-radius: 50px 50px 0 0;
-            transform: rotate(45deg);
-            top: -25%;
-            left: 0;
-            transform-origin: 100% 100%;
-        }
-        
-        /* Optimized photo display */
-        .photo-display {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate3d(-50%, -50%, 0);
-            width: clamp(240px, 65vw, 420px);
-            height: clamp(200px, 55vw, 350px);
-            border-radius: 25px;
-            overflow: hidden;
-            box-shadow: 
-                0 10px 30px rgba(0, 0, 0, 0.3),
-                0 0 15px rgba(255, 255, 255, 0.1);
-            border: 4px solid rgba(255, 255, 255, 0.9);
-            background: #fff;
-            z-index: 10;
-            will-change: transform;
-        }
-        
-        .slideshow-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-        
-        .slide {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            border-radius: 20px;
-            display: none;
-            will-change: opacity;
-        }
-        
-        .slide.active {
-            display: block;
-            opacity: 1;
-        }
-        
-        .slideshow-dots {
-            position: absolute;
-            bottom: 15px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            z-index: 20;
-        }
-        
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: 2px solid rgba(255, 105, 180, 0.8);
-            will-change: transform;
-        }
-        
-        .dot.active,
-        .dot:hover {
-            background: rgba(255, 105, 180, 0.9);
-            transform: scale(1.2);
-        }
-        
-        .slide-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 105, 180, 0.8);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            will-change: transform;
-        }
-        
-        .slide-btn:active {
-            transform: translateY(-50%) scale(0.9);
-        }
-        
-        .slide-btn.prev {
-            left: 15px;
-        }
-        
-        .slide-btn.next {
-            right: 15px;
-        }
-        
-        /* Optimized captions - simpler animation */
-        .rotating-captions {
-            margin: 40px auto 0;
-            height: 70px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 0 20px;
-            width: 100%;
-            max-width: 700px;
-        }
-        
-        .caption {
-            font-family: 'Great Vibes', cursive;
-            font-size: clamp(20px, 4.5vw, 32px);
-            font-weight: 400;
-            color: #FFFFFF;
-            text-shadow: 
-                0 0 10px rgba(139, 0, 139, 0.6),
-                1px 1px 3px rgba(0, 0, 0, 0.4);
-            opacity: 0;
-            position: absolute;
-            width: 100%;
-            text-align: center;
-            animation: captionFade 16s infinite;
-            line-height: 1.3;
-            z-index: 10;
-            will-change: opacity;
-        }
-        
-        .caption:nth-child(1) { animation-delay: 0s; }
-        .caption:nth-child(2) { animation-delay: 4s; }
-        .caption:nth-child(3) { animation-delay: 8s; }
-        .caption:nth-child(4) { animation-delay: 12s; }
-        
-        @keyframes captionFade {
-            0%, 100% { opacity: 0; }
-            6%, 19% { opacity: 1; }
-            25% { opacity: 0; }
-        }
-        
-        .music-player {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-        
-        .music-btn {
-            width: clamp(60px, 12vw, 75px);
-            height: clamp(60px, 12vw, 75px);
-            border-radius: 50%;
-            background: linear-gradient(135deg, #FF69B4 0%, #DDA0DD 50%, #FF1493 100%);
-            border: 3px solid rgba(255, 255, 255, 0.8);
-            color: white;
-            font-size: clamp(22px, 5vw, 30px);
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
-            transition: all 0.2s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            touch-action: manipulation;
-            will-change: transform;
-        }
-        
-        .music-btn:active {
-            transform: scale(0.9);
-        }
-        
-        .music-btn.playing {
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
-        }
-        
-        .touch-sparkle {
-            position: fixed;
-            pointer-events: none;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 18px;
-            z-index: 1000;
-            animation: touchSparkleDisappear 1s ease-out forwards;
-        }
-        
-        @keyframes touchSparkleDisappear {
-            0% { 
-                opacity: 1; 
-                transform: scale(1) rotate(0deg); 
-            }
-            100% { 
-                opacity: 0; 
-                transform: scale(0.3) rotate(180deg) translateY(-30px); 
-            }
-        }
-        
-        .background-audio {
-            display: none;
-        }
-        
-        /* MOBILE OPTIMIZATIONS - Disable heavy effects */
-        @media (max-width: 768px) {
-            body {
-                background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
-            }
-            
-            .container {
-                padding: 20px 15px 80px;
-            }
-            
-            .title {
-                font-size: clamp(28px, 7vw, 38px);
-                margin-bottom: 30px;
-                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-            }
-            
-            .heart-frame {
-                width: clamp(320px, 90vw, 480px);
-                height: clamp(270px, 80vw, 400px);
-            }
-            
-            .photo-display {
-                width: clamp(220px, 70vw, 360px);
-                height: clamp(180px, 58vw, 300px);
-            }
-            
-            .caption {
-                font-size: clamp(18px, 4vw, 26px);
-            }
-            
-            .rotating-captions {
-                height: 60px;
-                margin: 30px auto 0;
-            }
-            
-            .slide-btn {
-                width: 35px;
-                height: 35px;
-                font-size: 16px;
-            }
-            
-            .dot {
-                width: 10px;
-                height: 10px;
-            }
-            
-            /* Disable floating elements on small screens for performance */
-            .floating-elements {
-                display: none;
-            }
-            
-            .dreamy-aura {
-                display: none;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 15px 10px 70px;
-            }
-            
-            .title {
-                font-size: clamp(24px, 6vw, 32px);
-                margin-bottom: 25px;
-            }
-            
-            .heart-frame {
-                width: clamp(300px, 92vw, 420px);
-                height: clamp(250px, 82vw, 350px);
-            }
-            
-            .photo-display {
-                width: clamp(200px, 72vw, 320px);
-                height: clamp(160px, 60vw, 260px);
-            }
-            
-            .caption {
-                font-size: clamp(16px, 3.5vw, 22px);
-            }
-            
-            .rotating-captions {
-                height: 50px;
-                margin: 25px auto 0;
-            }
-            
-            .slide-btn {
-                width: 32px;
-                height: 32px;
-                font-size: 14px;
-            }
-        }
-        
-        @media (max-width: 360px) {
-            .heart-frame {
-                width: clamp(280px, 95vw, 380px);
-                height: clamp(230px, 85vw, 320px);
-            }
-            
-            .photo-display {
-                width: clamp(180px, 75vw, 280px);
-                height: clamp(140px, 62vw, 220px);
-            }
-            
-            .caption {
-                font-size: clamp(15px, 3.2vw, 20px);
-            }
-        }
-        
-        /* Desktop only - keep some animations */
-        @media (min-width: 769px) {
-            .title {
-                animation: titleGlow 4s ease-in-out infinite alternate;
-            }
-            
-            @keyframes titleGlow {
-                from { 
-                    text-shadow: 
-                        0 0 15px rgba(255, 105, 180, 0.8),
-                        2px 2px 6px rgba(0, 0, 0, 0.5);
-                }
-                to { 
-                    text-shadow: 
-                        0 0 25px rgba(255, 105, 180, 1),
-                        2px 2px 8px rgba(0, 0, 0, 0.6);
-                }
-            }
-            
-            .photo-container {
-                animation: photoFloat 8s ease-in-out infinite;
-            }
-            
-            @keyframes photoFloat {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-            }
-            
-            .heart-shape {
-                animation: heartPulse 4s ease-in-out infinite;
-            }
-            
-            @keyframes heartPulse {
-                0%, 100% { transform: rotate(-45deg) scale(1); }
-                50% { transform: rotate(-45deg) scale(1.03); }
-            }
-        }
-        
-        @media (orientation: landscape) and (max-height: 500px) {
-            .container {
-                padding: 15px 20px 50px;
-                justify-content: center;
-            }
-            
-            .title {
-                font-size: clamp(20px, 4vw, 28px);
-                margin-bottom: 20px;
-            }
-            
-            .heart-frame {
-                width: clamp(250px, 45vh, 350px);
-                height: clamp(210px, 40vh, 300px);
-            }
-            
-            .photo-display {
-                width: clamp(180px, 35vh, 260px);
-                height: clamp(150px, 30vh, 220px);
-            }
-            
-            .rotating-captions {
-                height: 40px;
-                margin: 20px auto 0;
-            }
-            
-            .caption {
-                font-size: clamp(16px, 3vw, 22px);
-            }
-        }
-        
-        /* Performance optimizations */
-        @media (prefers-reduced-motion: reduce) {
-            *, *::before, *::after {
-                animation-duration: 0.01ms !important;
-                animation-iteration-count: 1 !important;
-            }
-            
-            .floating-elements {
-                display: none;
-            }
-        }
-        
-        /* Low-end device optimizations */
-        @media (max-width: 480px) and (max-height: 800px) {
-            .heart-shape {
-                box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
-            }
-            
-            .photo-display {
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            }
-            
-            .title {
-                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Fav Photos of You 💕</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    h1 {
+      color: white;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+    }
+    .carousel {
+      position: relative;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+      background: white;
+    }
+    .carousel img {
+      width: 100%;
+      display: block;
+    }
+    .caption {
+      padding: 15px;
+      font-size: 1.2rem;
+      color: #444;
+      font-weight: 500;
+    }
+    .nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 50%;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+    .nav:hover {
+      background: white;
+    }
+    .prev { left: 10px; }
+    .next { right: 10px; }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #ff4d6d;
+      font-size: 24px;
+      animation: floatUp 6s linear infinite;
+    }
+    @keyframes floatUp {
+      0% {transform: translateY(0) scale(1); opacity: 1;}
+      100% {transform: translateY(-120vh) scale(1.5); opacity: 0;}
+    }
+  </style>
 </head>
 <body>
-    <audio class="background-audio" id="backgroundMusic" loop>
-        <source src="assets/romantic-song.mp3" type="audio/mpeg">
-        <source src="assets/romantic-song.ogg" type="audio/ogg">
-    </audio>
-    
-    <div class="floating-elements" id="floatingElements"></div>
-    
-    <div class="container">
-        <h1 class="title">My Favorite Picture of You ❤️</h1>
-        
-        <div class="photo-container">
-            <div class="dreamy-aura"></div>
-            <div class="heart-frame">
-                <div class="heart-shape"></div>
-                <div class="photo-display">
-                    <div class="slideshow-container">
-                        <img src="assets/fav_optimized.jpg" alt="My favorite picture of you 1" class="slide active" loading="lazy" />
-                        <img src="assets/photo2.jpg" alt="My favorite picture of you 2" class="slide" loading="lazy" />
-                        <img src="assets/photo3.jpg" alt="My favorite picture of you 3" class="slide" loading="lazy" />
-                        <img src="assets/photo4.jpg" alt="My favorite picture of you 4" class="slide" loading="lazy" />
-                    </div>
-                    
-                    <div class="slideshow-dots">
-                        <span class="dot active" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
-                        <span class="dot" onclick="currentSlide(4)"></span>
-                    </div>
-                    
-                    <button class="slide-btn prev" onclick="changeSlide(-1)">❮</button>
-                    <button class="slide-btn next" onclick="changeSlide(1)">❯</button>
-                </div>
-            </div>
-        </div>
-        
-        <div class="rotating-captions">
-            <div class="caption">This is the picture that reminds me why I fell for you.</div>
-            <div class="caption">If beauty had a definition, it would be this picture of you.</div>
-            <div class="caption">Looking at you here feels like watching my forever in a single frame.</div>
-            <div class="caption">Even the stars envy the way you shine in this photo.</div>
-        </div>
-    </div>
-    
-    <div class="music-player">
-        <button class="music-btn" id="musicBtn" aria-label="Toggle romantic music">
-            <span id="musicIcon">🎵</span>
-        </button>
-    </div>
-    
-    <script>
-        let isPlaying = false;
-        let audioElement = document.getElementById('backgroundMusic');
-        let touchStartTime = 0;
-        let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        let slideIndex = 0;
-        let slides = [];
-        let dots = [];
-        let autoSlideTimeout = null;
-        
-        // Optimized floating elements - fewer for mobile
-        function createFloatingElements() {
-            const container = document.getElementById('floatingElements');
-            
-            // Only create floating elements on desktop or larger tablets
-            if (window.innerWidth < 768) {
-                return; // Skip on mobile for performance
-            }
-            
-            const elementCount = window.innerWidth < 1024 ? 4 : 8;
-            
-            // Simplified sparkles
-            for (let i = 0; i < elementCount / 2; i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.innerHTML = '✨';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 8 + 's';
-                container.appendChild(sparkle);
-            }
-            
-            // Simplified hearts
-            for (let i = 0; i < elementCount / 2; i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '💖';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 10 + 's';
-                container.appendChild(heart);
-            }
-        }
-        
-        function initSlideshow() {
-            slides = document.querySelectorAll('.slide');
-            dots = document.querySelectorAll('.dot');
-            
-            if (slides.length > 1) {
-                startAutoSlideshow();
-            } else {
-                document.querySelector('.slideshow-dots').style.display = 'none';
-                document.querySelector('.slide-btn.prev').style.display = 'none';
-                document.querySelector('.slide-btn.next').style.display = 'none';
-            }
-        }
-        
-        function showSlide(index) {
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            if (slides[index]) slides[index].classList.add('active');
-            if (dots[index]) dots[index].classList.add('active');
-        }
-        
-        function currentSlide(index) {
-            slideIndex = index - 1;
-            showSlide(slideIndex);
-            resetAutoSlideshow();
-        }
-        
-        function changeSlide(direction) {
-            slideIndex += direction;
-            if (slideIndex >= slides.length) slideIndex = 0;
-            if (slideIndex < 0) slideIndex = slides.length - 1;
-            showSlide(slideIndex);
-            resetAutoSlideshow();
-        }
-        
-        function nextSlide() {
-            slideIndex = (slideIndex + 1) % slides.length;
-            showSlide(slideIndex);
-        }
-        
-        function startAutoSlideshow() {
-            if (slides.length > 1) {
-                autoSlideTimeout = setTimeout(function() {
-                    nextSlide();
-                    startAutoSlideshow();
-                }, 5000); // Increased interval for better performance
-            }
-        }
-        
-        function resetAutoSlideshow() {
-            if (autoSlideTimeout) {
-                clearTimeout(autoSlideTimeout);
-            }
-            startAutoSlideshow();
-        }
-        
-        // Throttled touch sparkle for better performance
-        let lastSparkleTime = 0;
-        function createTouchSparkle(x, y) {
-            const now = Date.now();
-            if (now - lastSparkleTime < 500 || Math.random() > 0.5) return; // Throttle sparkles
-            lastSparkleTime = now;
-            
-            const sparkles = ['✨', '💫', '💖'];
-            const sparkle = document.createElement('div');
-            sparkle.className = 'touch-sparkle';
-            sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
-            sparkle.style.left = (x - 10) + 'px';
-            sparkle.style.top = (y - 10) + 'px';
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                if (document.body.contains(sparkle)) {
-                    document.body.removeChild(sparkle);
-                }
-            }, 1000);
-        }
-        
-        function toggleMusic() {
-            const musicBtn = document.getElementById('musicBtn');
-            const musicIcon = document.getElementById('musicIcon');
-            
-            if (!isPlaying) {
-                audioElement.play().then(() => {
-                    isPlaying = true;
-                    musicBtn.classList.add('playing');
-                    musicIcon.textContent = '⏸️';
-                }).catch(() => {
-                    console.log('Audio play failed - user interaction required');
-                });
-            } else {
-                audioElement.pause();
-                isPlaying = false;
-                musicBtn.classList.remove('playing');
-                musicIcon.textContent = '🎵';
-            }
-        }
-        
-        document.addEventListener('DOMContentLoaded', function() {
-            createFloatingElements();
-            initSlideshow();
-            
-            const musicBtn = document.getElementById('musicBtn');
-            
-            musicBtn.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                touchStartTime = Date.now();
-                this.style.transform = 'scale(0.9)';
-            });
-            
-            musicBtn.addEventListener('touchend', function(e) {
-                e.preventDefault();
-                this.style.transform = '';
-                if (Date.now() - touchStartTime < 500) {
-                    toggleMusic();
-                }
-            });
-            
-            musicBtn.addEventListener('click', toggleMusic);
-            
-            setTimeout(() => {
-                if (slides.length > 1) {
-                    startAutoSlideshow();
-                }
-            }, 3000);
-        });
-        
-        // Throttled touch events
-        let touchThrottle = false;
-        document.addEventListener('touchstart', function(e) {
-            if (touchThrottle) return;
-            touchThrottle = true;
-            setTimeout(() => touchThrottle = false, 200);
-            
-            const touch = e.touches[0];
-            createTouchSparkle(touch.clientX, touch.clientY);
-        }, { passive: true });
-        
-        document.addEventListener('contextmenu', e => e.preventDefault());
-        
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', function(e) {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        });
-        
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                if (isPlaying) audioElement.pause();
-                if (autoSlideTimeout) clearTimeout(autoSlideTimeout);
-            } else {
-                if (isPlaying) audioElement.play();
-                if (slides.length > 1) resetAutoSlideshow();
-            }
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (slides.length > 1) {
-                if (e.key === 'ArrowLeft') {
-                    changeSlide(-1);
-                } else if (e.key === 'ArrowRight') {
-                    changeSlide(1);
-                }
-            }
-        });
-    </script>
+  <h1>💖 My Fav Photos of You 💖</h1>
+  
+  <div class="carousel">
+    <img id="carousel-image" src="https://picsum.photos/id/1011/500/600" alt="Fav Photo">
+    <div class="caption" id="carousel-caption">“This picture always reminds me how lucky I am to have you 💕”</div>
+    <button class="nav prev" onclick="prevImage()">❮</button>
+    <button class="nav next" onclick="nextImage()">❯</button>
+  </div>
+
+  <script>
+    const photos = [
+      {
+        src: "https://picsum.photos/id/1011/500/600",
+        caption: "“This picture always reminds me how lucky I am to have you 💕”"
+      },
+      {
+        src: "https://picsum.photos/id/1015/500/600",
+        caption: "“Your smile here melts my heart every single time 😍”"
+      },
+      {
+        src: "https://picsum.photos/id/1016/500/600",
+        caption: "“This was the day I realized how much I adore you 💖”"
+      }
+    ];
+
+    let currentIndex = 0;
+    const imageElement = document.getElementById("carousel-image");
+    const captionElement = document.getElementById("carousel-caption");
+
+    function updateCarousel() {
+      imageElement.src = photos[currentIndex].src;
+      captionElement.textContent = photos[currentIndex].caption;
+    }
+
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+      updateCarousel();
+    }
+
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % photos.length;
+      updateCarousel();
+    }
+
+    // Floating hearts
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.textContent = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 20 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+    setInterval(createHeart, 800);
+  </script>
 </body>
 </html>

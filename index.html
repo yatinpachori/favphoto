@@ -19,7 +19,6 @@
             -webkit-user-select: none;
             user-select: none;
         }
-
         body {
             min-height: 100vh;
             min-height: 100dvh;
@@ -32,13 +31,11 @@
             touch-action: pan-y;
             -webkit-overflow-scrolling: touch;
         }
-
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
-
         .floating-elements {
             position: fixed;
             top: 0;
@@ -48,36 +45,30 @@
             pointer-events: none;
             z-index: 1;
         }
-
         .sparkle, .floating-heart, .petal {
             position: absolute;
             animation-fill-mode: forwards;
         }
-
         .sparkle {
             color: rgba(255, 255, 255, 0.9);
             animation: sparkleFloat 10s infinite ease-in-out;
             font-size: clamp(12px, 3vw, 18px);
         }
-
         @keyframes sparkleFloat {
             0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
             10%, 90% { opacity: 1; }
             50% { transform: translate3d(20px, -30px, 0) rotate(360deg); }
         }
-
         .floating-heart {
             color: rgba(255, 20, 147, 0.8);
             font-size: clamp(16px, 4vw, 24px);
             animation: heartFloat 12s infinite ease-in-out;
         }
-
         @keyframes heartFloat {
             0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
             10%, 90% { opacity: 0.8; }
             50% { transform: translate3d(-30px, -40px, 0) rotate(45deg); }
         }
-
         .petal {
             width: clamp(8px, 2vw, 12px);
             height: clamp(8px, 2vw, 12px);
@@ -85,13 +76,11 @@
             border-radius: 50% 0 50% 0;
             animation: petalFloat 14s infinite ease-in-out;
         }
-
         @keyframes petalFloat {
             0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
             10%, 90% { opacity: 0.7; }
             50% { transform: translate3d(40px, -50px, 0) rotate(720deg); }
         }
-
         .container {
             position: relative;
             z-index: 2;
@@ -100,7 +89,6 @@
             padding: 30px 20px;
             text-align: center;
         }
-
         .title {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(32px, 8vw, 48px);
@@ -115,7 +103,6 @@
             animation: titlePulse 4s ease-in-out infinite alternate;
             position: relative;
         }
-
         @keyframes titlePulse {
             from { 
                 filter: drop-shadow(3px 3px 6px rgba(139, 0, 139, 0.4)) drop-shadow(0 0 20px rgba(139, 0, 139, 0.2));
@@ -126,7 +113,6 @@
                 transform: scale(1.02);
             }
         }
-
         .title::after {
             content: '✨';
             position: absolute;
@@ -135,25 +121,21 @@
             font-size: 0.6em;
             animation: twinkle 2s ease-in-out infinite;
         }
-
         @keyframes twinkle {
             0%, 100% { opacity: 0.5; transform: scale(1) rotate(0deg); }
             50% { opacity: 1; transform: scale(1.2) rotate(180deg); }
         }
-
         .photo-container {
             position: relative;
             display: inline-block;
             margin: 40px 0;
             animation: photoFloat 6s ease-in-out infinite;
         }
-
         @keyframes photoFloat {
             0%, 100% { transform: translateY(0) rotate(0deg); }
             33% { transform: translateY(-8px) rotate(1deg); }
             66% { transform: translateY(-5px) rotate(-1deg); }
         }
-
         .dreamy-aura {
             position: absolute;
             width: 120%;
@@ -169,7 +151,6 @@
                 transparent 100%);
             animation: auraGlow 8s ease-in-out infinite alternate;
         }
-
         @keyframes auraGlow {
             from { 
                 box-shadow: 0 0 40px rgba(255, 182, 193, 0.4);
@@ -180,14 +161,12 @@
                 transform: translate(-50%, -50%) scale(1.1);
             }
         }
-
         .heart-frame {
-            width: clamp(260px, 70vw, 320px);
-            height: clamp(220px, 60vw, 280px);
+            width: clamp(360px, 80vw, 450px);
+            height: clamp(300px, 70vw, 380px);
             position: relative;
             margin: 0 auto;
         }
-
         .heart-shape {
             position: absolute;
             width: 100%;
@@ -201,7 +180,6 @@
                 inset 0 0 30px rgba(255, 255, 255, 0.3);
             animation: heartPulse 3s ease-in-out infinite, heartShimmer 6s ease-in-out infinite;
         }
-
         @keyframes heartPulse {
             0%, 100% { 
                 transform: rotate(-45deg) scale(1); 
@@ -212,12 +190,10 @@
                 box-shadow: 0 0 60px rgba(255, 105, 180, 1), inset 0 0 40px rgba(255, 255, 255, 0.5);
             }
         }
-
         @keyframes heartShimmer {
             0%, 100% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
         }
-
         .heart-shape::before {
             content: '';
             position: absolute;
@@ -232,7 +208,6 @@
             transform-origin: 0 100%;
             animation: heartShimmer 6s ease-in-out infinite;
         }
-
         .heart-shape::after {
             content: '';
             position: absolute;
@@ -247,14 +222,13 @@
             transform-origin: 100% 100%;
             animation: heartShimmer 6s ease-in-out infinite;
         }
-
         .photo-display {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: clamp(180px, 50vw, 220px);
-            height: clamp(150px, 42vw, 180px);
+            width: clamp(250px, 65vw, 320px);
+            height: clamp(200px, 55vw, 260px);
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 
@@ -264,28 +238,85 @@
             background: #fff;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-
         .photo-display:hover {
             transform: translate(-50%, -50%) scale(1.05) rotate(2deg);
             box-shadow: 
                 0 20px 50px rgba(0, 0, 0, 0.5),
                 0 0 30px rgba(255, 255, 255, 0.3);
         }
-
-        .photo-display img {
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        .slide {
             width: 100%;
             height: 100%;
             object-fit: cover;
             object-position: center;
             border-radius: 20px;
-            display: block;
-            transition: all 0.4s ease;
+            display: none;
+            transition: opacity 0.8s ease-in-out;
         }
-
-        .photo-display:hover img {
+        .slide.active {
+            display: block;
+            opacity: 1;
+        }
+        .slide:hover {
             transform: scale(1.1);
         }
-
+        .slideshow-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid rgba(255, 105, 180, 0.8);
+        }
+        .dot.active,
+        .dot:hover {
+            background: rgba(255, 105, 180, 0.9);
+            transform: scale(1.2);
+        }
+        .slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 105, 180, 0.8);
+            color: white;
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        .slide-btn:hover {
+            background: rgba(255, 105, 180, 1);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .slide-btn.prev {
+            left: 10px;
+        }
+        .slide-btn.next {
+            right: 10px;
+        }
         .rotating-captions {
             margin: 50px 0;
             min-height: clamp(80px, 15vh, 120px);
@@ -295,7 +326,6 @@
             position: relative;
             padding: 0 15px;
         }
-
         .caption {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(20px, 5vw, 32px);
@@ -313,12 +343,10 @@
             filter: drop-shadow(2px 2px 4px rgba(139, 0, 139, 0.3));
             transform: translateZ(0);
         }
-
         .caption:nth-child(1) { animation-delay: 0s; }
         .caption:nth-child(2) { animation-delay: 5s; }
         .caption:nth-child(3) { animation-delay: 10s; }
         .caption:nth-child(4) { animation-delay: 15s; }
-
         @keyframes captionFade {
             0%, 100% { 
                 opacity: 0; 
@@ -336,14 +364,12 @@
                 filter: blur(5px) drop-shadow(2px 2px 4px rgba(139, 0, 139, 0.3));
             }
         }
-
         .music-player {
             position: fixed;
             bottom: 25px;
             right: 25px;
             z-index: 1000;
         }
-
         .music-btn {
             width: clamp(55px, 12vw, 70px);
             height: clamp(55px, 12vw, 70px);
@@ -364,7 +390,6 @@
             touch-action: manipulation;
             animation: musicButtonGlow 4s ease-in-out infinite alternate;
         }
-
         @keyframes musicButtonGlow {
             from { 
                 background-position: 0% 50%;
@@ -375,22 +400,18 @@
                 box-shadow: 0 10px 35px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 105, 180, 0.5);
             }
         }
-
         .music-btn:active {
             transform: scale(0.9);
         }
-
         .music-btn:hover {
             transform: scale(1.1) rotate(10deg);
             box-shadow: 
                 0 15px 35px rgba(255, 105, 180, 0.8),
                 0 0 30px rgba(255, 105, 180, 0.5);
         }
-
         .music-btn.playing {
             animation: musicPulse 1s ease-in-out infinite, musicButtonGlow 4s ease-in-out infinite alternate;
         }
-
         @keyframes musicPulse {
             0%, 100% { 
                 transform: scale(1);
@@ -401,7 +422,6 @@
                 box-shadow: 0 15px 40px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 105, 180, 0.7);
             }
         }
-
         .touch-sparkle {
             position: fixed;
             pointer-events: none;
@@ -410,7 +430,6 @@
             z-index: 1000;
             animation: touchSparkleDisappear 1.5s ease-out forwards;
         }
-
         @keyframes touchSparkleDisappear {
             0% { 
                 opacity: 1; 
@@ -423,7 +442,6 @@
                 filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
             }
         }
-
         /* Mobile Optimizations */
         @media (max-width: 768px) {
             .container {
@@ -436,21 +454,31 @@
             }
             
             .heart-frame {
-                width: clamp(240px, 75vw, 280px);
-                height: clamp(200px, 65vw, 240px);
+                width: clamp(320px, 85vw, 380px);
+                height: clamp(260px, 75vw, 320px);
             }
             
             .photo-display {
-                width: clamp(160px, 55vw, 200px);
-                height: clamp(130px, 47vw, 160px);
+                width: clamp(220px, 70vw, 280px);
+                height: clamp(180px, 60vw, 230px);
             }
             
             .caption {
                 font-size: clamp(18px, 4.5vw, 26px);
                 max-width: 95%;
             }
+            
+            .slide-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+            
+            .dot {
+                width: 10px;
+                height: 10px;
+            }
         }
-
         @media (max-width: 480px) {
             .title {
                 font-size: clamp(24px, 6vw, 32px);
@@ -458,13 +486,13 @@
             }
             
             .heart-frame {
-                width: clamp(220px, 80vw, 260px);
-                height: clamp(180px, 70vw, 220px);
+                width: clamp(280px, 90vw, 340px);
+                height: clamp(230px, 80vw, 280px);
             }
             
             .photo-display {
-                width: clamp(140px, 60vw, 180px);
-                height: clamp(110px, 52vw, 140px);
+                width: clamp(190px, 75vw, 240px);
+                height: clamp(150px, 65vw, 190px);
             }
             
             .caption {
@@ -475,24 +503,28 @@
                 margin: 40px 0;
                 min-height: 70px;
             }
+            
+            .slide-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
         }
-
         @media (max-width: 360px) {
             .title {
                 font-size: clamp(22px, 5.5vw, 28px);
             }
             
             .heart-frame {
-                width: clamp(200px, 85vw, 240px);
-                height: clamp(160px, 75vw, 200px);
+                width: clamp(260px, 95vw, 320px);
+                height: clamp(210px, 85vw, 260px);
             }
             
             .photo-display {
-                width: clamp(120px, 65vw, 160px);
-                height: clamp(95px, 57vw, 125px);
+                width: clamp(170px, 80vw, 220px);
+                height: clamp(130px, 70vw, 170px);
             }
         }
-
         /* Landscape Mode */
         @media (orientation: landscape) and (max-height: 500px) {
             .container {
@@ -509,13 +541,13 @@
             }
             
             .heart-frame {
-                width: clamp(160px, 35vh, 220px);
-                height: clamp(140px, 30vh, 180px);
+                width: clamp(200px, 40vh, 280px);
+                height: clamp(170px, 35vh, 230px);
             }
             
             .photo-display {
-                width: clamp(110px, 25vh, 150px);
-                height: clamp(90px, 20vh, 120px);
+                width: clamp(140px, 30vh, 200px);
+                height: clamp(110px, 25vh, 160px);
             }
             
             .rotating-captions {
@@ -527,7 +559,6 @@
                 font-size: clamp(16px, 3vw, 22px);
             }
         }
-
         /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
@@ -552,7 +583,25 @@
             <div class="heart-frame">
                 <div class="heart-shape"></div>
                 <div class="photo-display">
-                    <img src="assets/fav_optimized.jpg" alt="My favorite picture of you" loading="lazy" />
+                    <div class="slideshow-container">
+                        <img src="assets/fav_optimized.jpg" alt="My favorite picture of you 1" class="slide active" loading="lazy" />
+                        <img src="assets/photo2.jpg" alt="My favorite picture of you 2" class="slide" loading="lazy" />
+                        <img src="assets/photo3.jpg" alt="My favorite picture of you 3" class="slide" loading="lazy" />
+                        <img src="assets/photo4.jpg" alt="My favorite picture of you 4" class="slide" loading="lazy" />
+                        <!-- Add more photos as needed -->
+                    </div>
+                    
+                    <!-- Navigation dots -->
+                    <div class="slideshow-dots">
+                        <span class="dot active" onclick="currentSlide(1)"></span>
+                        <span class="dot" onclick="currentSlide(2)"></span>
+                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <span class="dot" onclick="currentSlide(4)"></span>
+                    </div>
+                    
+                    <!-- Navigation arrows -->
+                    <button class="slide-btn prev" onclick="changeSlide(-1)">❮</button>
+                    <button class="slide-btn next" onclick="changeSlide(1)">❯</button>
                 </div>
             </div>
         </div>
@@ -570,13 +619,19 @@
             <span id="musicIcon">🎵</span>
         </button>
     </div>
-
+    
     <script>
         let isPlaying = false;
         let audioContext = null;
         let currentOscillator = null;
         let touchStartTime = 0;
         let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Slideshow variables
+        let slideIndex = 0;
+        let slides = [];
+        let dots = [];
+        let autoSlideTimeout = null;
         
         // Create floating elements
         function createFloatingElements() {
@@ -615,7 +670,77 @@
                 container.appendChild(petal);
             }
         }
-
+        
+        // Slideshow functions
+        function initSlideshow() {
+            slides = document.querySelectorAll('.slide');
+            dots = document.querySelectorAll('.dot');
+            
+            if (slides.length > 1) {
+                startAutoSlideshow();
+            } else {
+                // Hide navigation if only one slide
+                document.querySelector('.slideshow-dots').style.display = 'none';
+                document.querySelector('.slide-btn.prev').style.display = 'none';
+                document.querySelector('.slide-btn.next').style.display = 'none';
+            }
+        }
+        
+        function showSlide(index) {
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show current slide and dot
+            if (slides[index]) {
+                slides[index].classList.add('active');
+            }
+            if (dots[index]) {
+                dots[index].classList.add('active');
+            }
+        }
+        
+        function currentSlide(index) {
+            slideIndex = index - 1;
+            showSlide(slideIndex);
+            resetAutoSlideshow();
+        }
+        
+        function changeSlide(direction) {
+            slideIndex += direction;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            showSlide(slideIndex);
+            resetAutoSlideshow();
+        }
+        
+        function nextSlide() {
+            slideIndex = (slideIndex + 1) % slides.length;
+            showSlide(slideIndex);
+        }
+        
+        function startAutoSlideshow() {
+            if (slides.length > 1) {
+                autoSlideTimeout = setTimeout(function() {
+                    nextSlide();
+                    startAutoSlideshow();
+                }, 4000); // Change slide every 4 seconds
+            }
+        }
+        
+        function resetAutoSlideshow() {
+            if (autoSlideTimeout) {
+                clearTimeout(autoSlideTimeout);
+            }
+            startAutoSlideshow();
+        }
+        
         // Enhanced touch sparkle effect
         function createTouchSparkle(x, y) {
             if (Math.random() > 0.3) return; // Reduced frequency
@@ -650,7 +775,7 @@
                 return false;
             }
         }
-
+        
         function createRomanticMelody() {
             if (!audioContext) return;
             
@@ -693,7 +818,7 @@
             
             playNextNote();
         }
-
+        
         function toggleMusic() {
             const musicBtn = document.getElementById('musicBtn');
             const musicIcon = document.getElementById('musicIcon');
@@ -717,9 +842,10 @@
                 }
             }
         }
-
+        
         document.addEventListener('DOMContentLoaded', function() {
             createFloatingElements();
+            initSlideshow();
             
             const musicBtn = document.getElementById('musicBtn');
             
@@ -749,14 +875,21 @@
                     );
                 });
             }
+            
+            // Start auto slideshow after 3 seconds
+            setTimeout(() => {
+                if (slides.length > 1) {
+                    startAutoSlideshow();
+                }
+            }, 3000);
         });
-
+        
         // Enhanced touch sparkle effects
         document.addEventListener('touchstart', function(e) {
             const touch = e.touches[0];
             createTouchSparkle(touch.clientX, touch.clientY);
         }, { passive: true });
-
+        
         // Prevent context menu and zoom
         document.addEventListener('contextmenu', e => e.preventDefault());
         
@@ -768,16 +901,32 @@
             }
             lastTouchEnd = now;
         });
-
+        
         // Handle visibility changes for better performance
         document.addEventListener('visibilitychange', function() {
             if (document.hidden) {
                 document.body.style.animationPlayState = 'paused';
+                if (autoSlideTimeout) {
+                    clearTimeout(autoSlideTimeout);
+                }
             } else {
                 document.body.style.animationPlayState = 'running';
+                if (slides.length > 1) {
+                    resetAutoSlideshow();
+                }
+            }
+        });
+        
+        // Keyboard navigation for slideshow
+        document.addEventListener('keydown', function(e) {
+            if (slides.length > 1) {
+                if (e.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (e.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
             }
         });
     </script>
 </body>
 </html>
-

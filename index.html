@@ -23,9 +23,7 @@
         body {
             min-height: 100vh;
             min-height: 100dvh;
-            background: linear-gradient(135deg, #FFB6C1, #DDA0DD, #FFDAB9, #FFD700);
-            background-size: 400% 400%;
-            animation: gradientShift 12s ease infinite;
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 50%, #FFDAB9 100%);
             font-family: 'Dancing Script', cursive;
             overflow-x: hidden;
             position: relative;
@@ -33,109 +31,48 @@
             -webkit-overflow-scrolling: touch;
         }
 
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .floating-elements {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            will-change: transform;
-        }
-
-        .sparkle, .floating-heart, .petal {
-            position: absolute;
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-        }
-
-        .sparkle {
-            color: rgba(255, 255, 255, 0.8);
-            animation: sparkleFloat 8s infinite ease-in-out;
-            font-size: clamp(10px, 3vw, 14px);
-        }
-
-        @keyframes sparkleFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 1; }
-            50% { transform: translate3d(0, -20px, 0) rotate(180deg); }
-        }
-
-        .floating-heart {
-            color: rgba(255, 182, 193, 0.7);
-            font-size: clamp(16px, 4vw, 20px);
-            animation: heartFloat 10s infinite ease-in-out;
-        }
-
-        @keyframes heartFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 0.7; }
-            50% { transform: translate3d(30px, -30px, 0) rotate(20deg); }
-        }
-
-        .petal {
-            width: clamp(6px, 2vw, 10px);
-            height: clamp(6px, 2vw, 10px);
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.6) 0%, rgba(255, 182, 193, 0.2) 100%);
-            border-radius: 50%;
-            animation: petalFloat 12s infinite ease-in-out;
-        }
-
-        @keyframes petalFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 0.6; }
-            50% { transform: translate3d(-20px, -40px, 0) rotate(360deg); }
-        }
-
         .container {
             position: relative;
             z-index: 2;
             max-width: 100%;
             margin: 0 auto;
-            padding: clamp(15px, 4vh, 30px) clamp(10px, 3vw, 15px);
+            padding: 20px 15px;
             text-align: center;
         }
 
         .title {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.8rem, 7vw, 3.5rem);
-            color: #8B008B;
-            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5);
-            margin-bottom: clamp(20px, 6vh, 40px);
-            animation: titleGlow 4s ease-in-out infinite alternate;
-            will-change: text-shadow;
+            font-size: 36px;
+            font-weight: 400;
+            background: linear-gradient(45deg, #8B008B 0%, #9932CC 25%, #8A2BE2 50%, #9370DB 75%, #8B008B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(139, 0, 139, 0.3);
+            filter: drop-shadow(2px 2px 4px rgba(139, 0, 139, 0.3));
+            animation: titleGlow 3s ease-in-out infinite alternate;
         }
 
         @keyframes titleGlow {
-            from { text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(255, 182, 193, 0.5); }
-            to { text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 182, 193, 0.8); }
+            from { 
+                filter: drop-shadow(2px 2px 4px rgba(139, 0, 139, 0.3));
+            }
+            to { 
+                filter: drop-shadow(2px 2px 8px rgba(139, 0, 139, 0.5));
+            }
         }
 
         .photo-container {
             position: relative;
             display: inline-block;
-            margin: clamp(15px, 5vh, 30px) 0;
-            animation: photoFloat 8s ease-in-out infinite;
-            will-change: transform;
-            touch-action: none;
-        }
-
-        @keyframes photoFloat {
-            0%, 100% { transform: translate3d(0, 0, 0); }
-            50% { transform: translate3d(0, -10px, 0); }
+            margin: 30px 0;
         }
 
         .heart-frame {
-            width: min(85vw, 350px);
-            height: min(75vw, 300px);
+            width: 280px;
+            height: 240px;
             position: relative;
             margin: 0 auto;
         }
@@ -147,19 +84,18 @@
             background: linear-gradient(45deg, #FF69B4, #FFB6C1, #DDA0DD);
             border-radius: 50px 50px 0 50px;
             transform: rotate(-45deg);
-            box-shadow: 0 0 30px rgba(255, 105, 180, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3);
-            animation: heartPulse 3s ease-in-out infinite;
-            will-change: transform, box-shadow;
+            box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
+            animation: heartPulse 2s ease-in-out infinite;
         }
 
         @keyframes heartPulse {
             0%, 100% { 
-                transform: rotate(-45deg) scale3d(1, 1, 1); 
-                box-shadow: 0 0 30px rgba(255, 105, 180, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.3); 
+                transform: rotate(-45deg) scale(1); 
+                box-shadow: 0 0 30px rgba(255, 105, 180, 0.8);
             }
             50% { 
-                transform: rotate(-45deg) scale3d(1.05, 1.05, 1); 
-                box-shadow: 0 0 50px rgba(255, 105, 180, 0.9), inset 0 0 30px rgba(255, 255, 255, 0.5); 
+                transform: rotate(-45deg) scale(1.05); 
+                box-shadow: 0 0 50px rgba(255, 105, 180, 1);
             }
         }
 
@@ -194,18 +130,13 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: min(65vw, 230px);
-            height: min(55vw, 200px);
+            width: 200px;
+            height: 160px;
             border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            border: 3px solid rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 4px solid rgba(255, 255, 255, 1);
             background: #fff;
-        }
-
-        .photo-display:active {
-            transform: translate(-50%, -50%) scale(0.98);
         }
 
         .photo-display img {
@@ -213,80 +144,65 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            border-radius: 17px;
+            border-radius: 16px;
             display: block;
         }
 
-        .dreamy-aura {
-            position: absolute;
-            width: min(90vw, 450px);
-            height: min(80vw, 400px);
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.3) 0%, rgba(255, 182, 193, 0.1) 50%, transparent 100%);
-            animation: auraGlow 6s ease-in-out infinite alternate;
-            will-change: box-shadow;
-        }
-
-        @keyframes auraGlow {
-            from { box-shadow: 0 0 50px rgba(255, 182, 193, 0.4); }
-            to { box-shadow: 0 0 100px rgba(255, 182, 193, 0.7); }
-        }
-
         .rotating-captions {
-            margin: clamp(30px, 8vh, 50px) 0;
-            min-height: clamp(60px, 12vh, 100px);
+            margin: 40px 0;
+            min-height: 80px;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            padding: 0 10px;
         }
 
         .caption {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(1.3rem, 5vw, 2.2rem);
-            color: #8B008B;
-            text-shadow: 2px 2px 10px rgba(255, 255, 255, 0.7);
+            font-size: 26px;
+            font-weight: 400;
+            background: linear-gradient(45deg, #8B008B 0%, #9932CC 25%, #8A2BE2 50%, #9370DB 75%, #8B008B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             opacity: 0;
             position: absolute;
-            max-width: 95%;
-            line-height: 1.4;
+            max-width: 100%;
+            line-height: 1.3;
             animation: captionFade 20s infinite;
-            will-change: opacity, transform;
-            transform: translateZ(0);
             text-align: center;
-            padding: 0 10px;
+            filter: drop-shadow(1px 1px 2px rgba(139, 0, 139, 0.3));
         }
 
+        .caption:nth-child(1) { animation-delay: 0s; }
         .caption:nth-child(2) { animation-delay: 5s; }
         .caption:nth-child(3) { animation-delay: 10s; }
         .caption:nth-child(4) { animation-delay: 15s; }
 
         @keyframes captionFade {
-            0%, 100% { opacity: 0; transform: translate3d(0, 20px, 0); }
-            5%, 20% { opacity: 1; transform: translate3d(0, 0, 0); }
-            25% { opacity: 0; transform: translate3d(0, -20px, 0); }
+            0%, 100% { opacity: 0; transform: translateY(10px); }
+            5%, 20% { opacity: 1; transform: translateY(0); }
+            25% { opacity: 0; transform: translateY(-10px); }
         }
 
         .music-player {
             position: fixed;
-            bottom: clamp(15px, 4vh, 25px);
-            right: clamp(15px, 4vw, 25px);
+            bottom: 20px;
+            right: 20px;
             z-index: 1000;
         }
 
         .music-btn {
-            width: clamp(45px, 10vw, 55px);
-            height: clamp(45px, 10vw, 55px);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             background: linear-gradient(135deg, #FF69B4, #DDA0DD);
             border: none;
             color: white;
-            font-size: clamp(16px, 4vw, 22px);
+            font-size: 24px;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6);
             transition: all 0.3s ease;
             display: flex;
             align-items: center;
@@ -296,7 +212,6 @@
 
         .music-btn:active {
             transform: scale(0.9);
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.6);
         }
 
         .music-btn.playing {
@@ -304,179 +219,147 @@
         }
 
         @keyframes musicPulse {
-            0%, 100% { box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4); }
-            50% { box-shadow: 0 8px 20px rgba(255, 105, 180, 0.8), 0 0 20px rgba(255, 105, 180, 0.6); }
+            0%, 100% { box-shadow: 0 8px 20px rgba(255, 105, 180, 0.6); }
+            50% { box-shadow: 0 8px 30px rgba(255, 105, 180, 1); }
         }
 
-        .touch-sparkle {
-            position: fixed;
-            pointer-events: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 16px;
-            z-index: 1000;
-            animation: touchSparkleDisappear 1s ease-out forwards;
-        }
-
-        @keyframes touchSparkleDisappear {
-            0% { opacity: 1; transform: scale(1) rotate(0deg); }
-            100% { opacity: 0; transform: scale(0.3) rotate(180deg) translateY(-30px); }
-        }
-
-        /* Mobile-first responsive design */
+        /* Mobile Optimizations */
         @media (max-width: 768px) {
             .container {
-                padding: clamp(10px, 3vh, 20px) clamp(8px, 2vw, 12px);
+                padding: 15px 10px;
             }
             
             .title {
-                font-size: clamp(1.5rem, 6vw, 3rem);
-                margin-bottom: clamp(15px, 5vh, 30px);
+                font-size: 32px;
+                margin-bottom: 25px;
             }
             
             .heart-frame {
-                width: min(90vw, 300px);
-                height: min(80vw, 260px);
+                width: 250px;
+                height: 210px;
             }
             
             .photo-display {
-                width: min(70vw, 200px);
-                height: min(60vw, 170px);
+                width: 180px;
+                height: 140px;
             }
             
             .caption {
-                font-size: clamp(1.1rem, 4.5vw, 1.8rem);
-                max-width: 98%;
+                font-size: 22px;
+                max-width: 95%;
+            }
+            
+            .music-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+                bottom: 15px;
+                right: 15px;
             }
         }
 
-        /* Extra small devices (phones, 600px and down) */
-        @media (max-width: 600px) {
+        /* Small Mobile Phones */
+        @media (max-width: 480px) {
             .title {
-                font-size: clamp(1.3rem, 5.5vw, 2.5rem);
+                font-size: 28px;
+                margin-bottom: 20px;
             }
             
             .heart-frame {
-                width: min(95vw, 280px);
-                height: min(85vw, 240px);
+                width: 220px;
+                height: 190px;
             }
             
             .photo-display {
-                width: min(75vw, 180px);
-                height: min(65vw, 150px);
+                width: 160px;
+                height: 130px;
+            }
+            
+            .caption {
+                font-size: 20px;
+                line-height: 1.2;
             }
             
             .rotating-captions {
-                margin: clamp(20px, 6vh, 40px) 0;
-                min-height: clamp(50px, 10vh, 80px);
+                margin: 30px 0;
+                min-height: 60px;
             }
         }
 
-        /* Reduce motion for users who prefer it */
+        /* Very Small Screens */
+        @media (max-width: 360px) {
+            .title {
+                font-size: 24px;
+            }
+            
+            .heart-frame {
+                width: 200px;
+                height: 170px;
+            }
+            
+            .photo-display {
+                width: 140px;
+                height: 115px;
+            }
+            
+            .caption {
+                font-size: 18px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (orientation: landscape) and (max-height: 500px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .title {
+                font-size: 24px;
+                margin-bottom: 15px;
+            }
+            
+            .photo-container {
+                margin: 20px 0;
+            }
+            
+            .heart-frame {
+                width: 180px;
+                height: 150px;
+            }
+            
+            .photo-display {
+                width: 130px;
+                height: 105px;
+            }
+            
+            .rotating-captions {
+                margin: 20px 0;
+                min-height: 40px;
+            }
+            
+            .caption {
+                font-size: 18px;
+            }
+        }
+
+        /* Reduce motion for accessibility */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
                 animation-iteration-count: 1 !important;
-                transition-duration: 0.01ms !important;
-            }
-        }
-
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            .title, .caption {
-                color: #FF69B4;
-                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 182, 193, 0.5);
-            }
-        }
-
-        /* Performance optimizations for older devices */
-        @media (max-width: 480px) and (max-height: 800px) {
-            .floating-elements {
-                display: none;
-            }
-            
-            body {
-                animation: none;
-                background: linear-gradient(135deg, #FFB6C1, #DDA0DD);
-            }
-            
-            .title {
-                animation: none;
-            }
-            
-            .photo-container {
-                animation: none;
-            }
-            
-            .heart-shape {
-                animation: heartPulseSimple 2s ease-in-out infinite;
-            }
-            
-            @keyframes heartPulseSimple {
-                0%, 100% { transform: rotate(-45deg) scale(1); }
-                50% { transform: rotate(-45deg) scale(1.02); }
-            }
-        }
-
-        /* Landscape orientation optimizations */
-        @media (orientation: landscape) and (max-height: 500px) {
-            .container {
-                padding: 8px 15px;
-            }
-            
-            .title {
-                margin-bottom: 15px;
-                font-size: clamp(1.2rem, 4vw, 2rem);
-            }
-            
-            .photo-container {
-                margin: 15px 0;
-            }
-            
-            .rotating-captions {
-                margin: 15px 0;
-                min-height: 40px;
-            }
-            
-            .heart-frame {
-                width: min(60vh, 250px);
-                height: min(50vh, 220px);
-            }
-            
-            .photo-display {
-                width: min(45vh, 180px);
-                height: min(35vh, 140px);
-            }
-        }
-
-        /* Very small screens */
-        @media (max-width: 320px) {
-            .title {
-                font-size: clamp(1.1rem, 5vw, 2rem);
-            }
-            
-            .caption {
-                font-size: clamp(0.9rem, 4vw, 1.5rem);
-            }
-            
-            .heart-frame {
-                width: min(98vw, 260px);
-                height: min(88vw, 220px);
             }
         }
     </style>
 </head>
 <body>
-    <div class="floating-elements" id="floatingElements"></div>
-    
     <div class="container">
         <h1 class="title">My Favorite Picture of You ❤️</h1>
         
-        <div class="photo-container" id="photoContainer">
-            <div class="dreamy-aura"></div>
+        <div class="photo-container">
             <div class="heart-frame">
                 <div class="heart-shape"></div>
-                <div class="photo-display" id="photoDisplay">
-                    <img src="assets/fav_optimized.jpg" alt="My favorite picture of you" loading="lazy" />
+                <div class="photo-display">
+                    <img src="fav_optimized.jpg" alt="My favorite picture of you" loading="lazy" />
                 </div>
             </div>
         </div>
@@ -496,109 +379,24 @@
     </div>
 
     <script>
-        // Performance and mobile optimization variables
-        let isLowPerformanceDevice = false;
-        let touchStartTime = 0;
         let isPlaying = false;
         let audioContext = null;
         let currentOscillator = null;
-        let animationId = null;
+        let touchStartTime = 0;
         
-        // Detect low performance devices
-        function detectPerformance() {
-            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-            const memory = navigator.deviceMemory;
-            const cores = navigator.hardwareConcurrency;
-            
-            if (memory && memory <= 2) isLowPerformanceDevice = true;
-            if (cores && cores <= 2) isLowPerformanceDevice = true;
-            if (connection && (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g')) {
-                isLowPerformanceDevice = true;
-            }
-            
-            // Check screen size and device type
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const isSmallScreen = window.innerWidth <= 768 || window.innerHeight <= 600;
-            
-            if (isMobile || isSmallScreen) {
-                isLowPerformanceDevice = true;
-            }
-        }
-
-        // Optimized floating elements creation
-        function createFloatingElements() {
-            if (isLowPerformanceDevice) return;
-            
-            const container = document.getElementById('floatingElements');
-            const elementCount = 10; // Reduced for better mobile performance
-            
-            // Create sparkles
-            for (let i = 0; i < Math.floor(elementCount * 0.4); i++) {
-                const sparkle = document.createElement('div');
-                sparkle.className = 'sparkle';
-                sparkle.innerHTML = '✨';
-                sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 8 + 's';
-                sparkle.style.animationDuration = (Math.random() * 3 + 6) + 's';
-                container.appendChild(sparkle);
-            }
-            
-            // Create floating hearts
-            for (let i = 0; i < Math.floor(elementCount * 0.3); i++) {
-                const heart = document.createElement('div');
-                heart.className = 'floating-heart';
-                heart.innerHTML = '💖';
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 10 + 's';
-                heart.style.animationDuration = (Math.random() * 4 + 8) + 's';
-                container.appendChild(heart);
-            }
-            
-            // Create petals
-            for (let i = 0; i < Math.floor(elementCount * 0.3); i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animationDelay = Math.random() * 12 + 's';
-                petal.style.animationDuration = (Math.random() * 5 + 10) + 's';
-                container.appendChild(petal);
-            }
-        }
-
-        // Enhanced touch interaction with sparkles
-        function createTouchSparkle(x, y) {
-            if (isLowPerformanceDevice || Math.random() > 0.2) return;
-            
-            const sparkle = document.createElement('div');
-            sparkle.className = 'touch-sparkle';
-            sparkle.innerHTML = '✨';
-            sparkle.style.left = (x - 8) + 'px';
-            sparkle.style.top = (y - 8) + 'px';
-            document.body.appendChild(sparkle);
-            
-            setTimeout(() => {
-                if (document.body.contains(sparkle)) {
-                    document.body.removeChild(sparkle);
-                }
-            }, 1000);
-        }
-
-        // Enhanced music player with better mobile support
         function initAudioContext() {
             try {
                 if (!audioContext) {
                     audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    
-                    // Resume audio context on user interaction (iOS requirement)
                     if (audioContext.state === 'suspended') {
                         audioContext.resume();
                     }
                 }
+                return true;
             } catch (e) {
-                console.log('Audio not supported on this device');
+                console.log('Audio not supported');
                 return false;
             }
-            return true;
         }
 
         function createRomanticMelody() {
@@ -612,7 +410,6 @@
                 if (!isPlaying || !audioContext) return;
                 
                 try {
-                    // Stop previous oscillator
                     if (currentOscillator) {
                         currentOscillator.stop();
                     }
@@ -638,7 +435,7 @@
                     
                     setTimeout(playNextNote, 2500);
                 } catch (e) {
-                    console.log('Error playing note:', e);
+                    console.log('Error playing note');
                 }
             }
             
@@ -669,33 +466,14 @@
             }
         }
 
-        // Optimized image loading
-        function optimizeImageLoading() {
-            const img = document.querySelector('.photo-display img');
-            if (img) {
-                img.loading = 'lazy';
-                img.addEventListener('load', function() {
-                    this.style.opacity = '1';
-                });
-                img.style.opacity = '0';
-                img.style.transition = 'opacity 0.3s ease';
-            }
-        }
-
-        // Event listeners with better mobile support
         document.addEventListener('DOMContentLoaded', function() {
-            detectPerformance();
-            createFloatingElements();
-            optimizeImageLoading();
-            
             const musicBtn = document.getElementById('musicBtn');
             
-            // Enhanced mobile touch events
             musicBtn.addEventListener('touchstart', function(e) {
                 e.preventDefault();
                 touchStartTime = Date.now();
-                this.style.transform = 'scale(0.95)';
-            }, { passive: false });
+                this.style.transform = 'scale(0.9)';
+            });
             
             musicBtn.addEventListener('touchend', function(e) {
                 e.preventDefault();
@@ -703,44 +481,14 @@
                 if (Date.now() - touchStartTime < 500) {
                     toggleMusic();
                 }
-            }, { passive: false });
-            
-            musicBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                toggleMusic();
             });
             
-            // Prevent default touch behaviors that might interfere
-            musicBtn.addEventListener('touchmove', function(e) {
-                e.preventDefault();
-            }, { passive: false });
+            musicBtn.addEventListener('click', toggleMusic);
         });
 
-        // Optimized touch sparkle effects
-        document.addEventListener('touchstart', function(e) {
-            if (!isLowPerformanceDevice && Math.random() < 0.15) {
-                const touch = e.touches[0];
-                createTouchSparkle(touch.clientX, touch.clientY);
-            }
-        }, { passive: true });
-
-        // Prevent context menu on long press
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-
-        // Handle orientation change with debouncing
-        let orientationTimeout;
-        window.addEventListener('orientationchange', function() {
-            clearTimeout(orientationTimeout);
-            orientationTimeout = setTimeout(function() {
-                window.scrollTo(0, 0);
-                // Re-detect performance after orientation change
-                detectPerformance();
-            }, 200);
-        });
-
-        // Prevent zoom on double tap
+        // Prevent context menu and zoom
+        document.addEventListener('contextmenu', e => e.preventDefault());
+        
         let lastTouchEnd = 0;
         document.addEventListener('touchend', function(e) {
             const now = Date.now();
@@ -748,76 +496,7 @@
                 e.preventDefault();
             }
             lastTouchEnd = now;
-        }, { passive: false });
-
-        // Battery and performance optimization
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                // Pause animations when page is hidden
-                document.body.style.animationPlayState = 'paused';
-                if (animationId) {
-                    cancelAnimationFrame(animationId);
-                }
-            } else {
-                // Resume animations when page is visible
-                document.body.style.animationPlayState = 'running';
-                if (!isLowPerformanceDevice) {
-                    monitorPerformance();
-                }
-            }
         });
-
-        // Improved performance monitoring with throttling
-        let frameCount = 0;
-        let lastTime = performance.now();
-        let performanceCheckInterval = 2000; // Check every 2 seconds
-        
-        function monitorPerformance() {
-            if (isLowPerformanceDevice) return;
-            
-            frameCount++;
-            const currentTime = performance.now();
-            
-            if (currentTime - lastTime >= performanceCheckInterval) {
-                const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
-                
-                if (fps < 25) {
-                    isLowPerformanceDevice = true;
-                    const floatingElements = document.getElementById('floatingElements');
-                    if (floatingElements) {
-                        floatingElements.style.display = 'none';
-                    }
-                    // Reduce animation complexity
-                    document.body.classList.add('low-performance');
-                    return;
-                }
-                
-                frameCount = 0;
-                lastTime = currentTime;
-                performanceCheckInterval = Math.min(performanceCheckInterval + 500, 5000);
-            }
-            
-            animationId = requestAnimationFrame(monitorPerformance);
-        }
-        
-        // Start performance monitoring
-        if (!isLowPerformanceDevice) {
-            requestAnimationFrame(monitorPerformance);
-        }
-
-        // Handle network changes
-        if ('connection' in navigator) {
-            navigator.connection.addEventListener('change', function() {
-                const connection = navigator.connection;
-                if (connection.effectiveType === '2g' || connection.effectiveType === 'slow-2g') {
-                    isLowPerformanceDevice = true;
-                    const floatingElements = document.getElementById('floatingElements');
-                    if (floatingElements) {
-                        floatingElements.style.display = 'none';
-                    }
-                }
-            });
-        }
     </script>
 </body>
 </html>

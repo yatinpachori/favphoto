@@ -22,21 +22,14 @@
         
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 30%, #FFDAB9 60%, #FFD700 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
+            background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 50%, #FFDAB9 100%);
             font-family: 'Dancing Script', cursive;
             overflow-x: hidden;
             touch-action: pan-y;
             position: relative;
         }
         
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
+        /* Simplified floating elements - fewer for mobile */
         .floating-elements {
             position: fixed;
             top: 0;
@@ -47,47 +40,50 @@
             z-index: 1;
         }
         
-        .sparkle, .floating-heart, .petal {
+        .sparkle, .floating-heart {
             position: absolute;
+            will-change: transform;
             animation-fill-mode: forwards;
         }
         
         .sparkle {
-            color: rgba(255, 255, 255, 0.9);
-            animation: sparkleFloat 10s infinite ease-in-out;
-            font-size: clamp(12px, 3vw, 18px);
+            color: rgba(255, 255, 255, 0.7);
+            animation: sparkleFloat 8s infinite linear;
+            font-size: 16px;
         }
         
         @keyframes sparkleFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 1; }
-            50% { transform: translate3d(20px, -30px, 0) rotate(360deg); }
+            0% { 
+                transform: translate3d(0, 100vh, 0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10%, 90% { 
+                opacity: 0.7; 
+            }
+            100% { 
+                transform: translate3d(10px, -20px, 0) rotate(180deg); 
+                opacity: 0; 
+            }
         }
         
         .floating-heart {
-            color: rgba(255, 20, 147, 0.8);
-            font-size: clamp(16px, 4vw, 24px);
-            animation: heartFloat 12s infinite ease-in-out;
+            color: rgba(255, 20, 147, 0.6);
+            font-size: 18px;
+            animation: heartFloat 10s infinite linear;
         }
         
         @keyframes heartFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 0.8; }
-            50% { transform: translate3d(-30px, -40px, 0) rotate(45deg); }
-        }
-        
-        .petal {
-            width: clamp(8px, 2vw, 12px);
-            height: clamp(8px, 2vw, 12px);
-            background: radial-gradient(circle, rgba(255, 182, 193, 0.8) 0%, rgba(255, 105, 180, 0.4) 100%);
-            border-radius: 50% 0 50% 0;
-            animation: petalFloat 14s infinite ease-in-out;
-        }
-        
-        @keyframes petalFloat {
-            0%, 100% { transform: translate3d(0, 100vh, 0) rotate(0deg); opacity: 0; }
-            10%, 90% { opacity: 0.7; }
-            50% { transform: translate3d(40px, -50px, 0) rotate(720deg); }
+            0% { 
+                transform: translate3d(0, 100vh, 0) rotate(0deg); 
+                opacity: 0; 
+            }
+            10%, 90% { 
+                opacity: 0.6; 
+            }
+            100% { 
+                transform: translate3d(-20px, -30px, 0) rotate(90deg); 
+                opacity: 0; 
+            }
         }
         
         .container {
@@ -104,66 +100,34 @@
             align-items: center;
         }
         
-        /* PERFECT TITLE STYLING */
+        /* Optimized title - simpler animation */
         .title {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(32px, 8vw, 56px);
             font-weight: 400;
             color: #FFFFFF;
             text-shadow: 
-                0 0 20px rgba(255, 105, 180, 0.9),
-                0 0 40px rgba(255, 105, 180, 0.7),
-                0 0 60px rgba(139, 0, 139, 0.5),
-                3px 3px 8px rgba(0, 0, 0, 0.6);
+                0 0 15px rgba(255, 105, 180, 0.8),
+                2px 2px 6px rgba(0, 0, 0, 0.5);
             margin-bottom: 40px;
             line-height: 1.1;
-            animation: titleGlow 3s ease-in-out infinite alternate;
             position: relative;
             z-index: 100;
             letter-spacing: 1px;
             text-align: center;
             width: 100%;
+            will-change: transform;
         }
         
-        @keyframes titleGlow {
-            from { 
-                text-shadow: 
-                    0 0 20px rgba(255, 105, 180, 0.9),
-                    0 0 40px rgba(255, 105, 180, 0.7),
-                    0 0 60px rgba(139, 0, 139, 0.5),
-                    3px 3px 8px rgba(0, 0, 0, 0.6);
-                transform: scale(1);
-            }
-            to { 
-                text-shadow: 
-                    0 0 30px rgba(255, 105, 180, 1),
-                    0 0 50px rgba(255, 105, 180, 0.9),
-                    0 0 80px rgba(139, 0, 139, 0.7),
-                    3px 3px 10px rgba(0, 0, 0, 0.8);
-                transform: scale(1.02);
-            }
-        }
-        
+        /* Simple sparkle - no complex animation on mobile */
         .title::after {
             content: '✨';
             position: absolute;
             right: -20px;
             top: -15px;
             font-size: 0.6em;
-            animation: sparkle 2s ease-in-out infinite;
             color: #FFD700;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.9);
-        }
-        
-        @keyframes sparkle {
-            0%, 100% { 
-                opacity: 0.7; 
-                transform: scale(1) rotate(0deg); 
-            }
-            50% { 
-                opacity: 1; 
-                transform: scale(1.3) rotate(180deg); 
-            }
+            opacity: 0.8;
         }
         
         .photo-container {
@@ -172,43 +136,23 @@
             justify-content: center;
             align-items: center;
             margin: 0 auto 40px;
-            animation: photoFloat 6s ease-in-out infinite;
         }
         
-        @keyframes photoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            33% { transform: translateY(-8px) rotate(1deg); }
-            66% { transform: translateY(-5px) rotate(-1deg); }
-        }
-        
+        /* Simplified aura - no animation on mobile */
         .dreamy-aura {
             position: absolute;
             width: 120%;
             height: 120%;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate3d(-50%, -50%, 0);
             border-radius: 50%;
             background: radial-gradient(circle, 
-                rgba(255, 182, 193, 0.3) 0%, 
-                rgba(255, 105, 180, 0.2) 40%, 
-                rgba(138, 43, 226, 0.1) 70%, 
-                transparent 100%);
-            animation: auraGlow 8s ease-in-out infinite alternate;
+                rgba(255, 182, 193, 0.2) 0%, 
+                rgba(255, 105, 180, 0.1) 50%, 
+                transparent 80%);
         }
         
-        @keyframes auraGlow {
-            from { 
-                box-shadow: 0 0 40px rgba(255, 182, 193, 0.4);
-                transform: translate(-50%, -50%) scale(1);
-            }
-            to { 
-                box-shadow: 0 0 80px rgba(255, 105, 180, 0.6);
-                transform: translate(-50%, -50%) scale(1.1);
-            }
-        }
-        
-        /* PERFECT HEART FRAME */
         .heart-frame {
             width: clamp(350px, 85vw, 550px);
             height: clamp(300px, 75vw, 460px);
@@ -218,22 +162,22 @@
             align-items: center;
         }
         
+        /* Optimized heart shape - simplified animation */
         .heart-shape {
             position: absolute;
             width: 100%;
             height: 90%;
             top: 5%;
             left: 0;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 30%, #DDA0DD 60%, #FF69B4 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
             border-radius: 50px 50px 0 50px;
             transform: rotate(-45deg);
             transform-origin: center center;
             box-shadow: 
-                0 0 40px rgba(255, 105, 180, 0.8),
-                inset 0 0 30px rgba(255, 255, 255, 0.3);
-            animation: heartPulse 3s ease-in-out infinite, heartShimmer 6s ease-in-out infinite;
+                0 0 30px rgba(255, 105, 180, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
             z-index: 1;
+            will-change: transform;
         }
         
         .heart-shape::before {
@@ -241,14 +185,12 @@
             position: absolute;
             width: 52%;
             height: 80%;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 30%, #DDA0DD 60%, #FF69B4 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
             border-radius: 50px 50px 0 0;
             transform: rotate(-45deg);
             top: -25%;
             left: 50%;
             transform-origin: 0 100%;
-            animation: heartShimmer 6s ease-in-out infinite;
         }
         
         .heart-shape::after {
@@ -256,56 +198,31 @@
             position: absolute;
             width: 52%;
             height: 80%;
-            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 30%, #DDA0DD 60%, #FF69B4 100%);
-            background-size: 200% 200%;
+            background: linear-gradient(45deg, #FF69B4 0%, #FFB6C1 50%, #DDA0DD 100%);
             border-radius: 50px 50px 0 0;
             transform: rotate(45deg);
             top: -25%;
             left: 0;
             transform-origin: 100% 100%;
-            animation: heartShimmer 6s ease-in-out infinite;
         }
         
-        @keyframes heartPulse {
-            0%, 100% { 
-                transform: rotate(-45deg) scale(1); 
-                box-shadow: 0 0 40px rgba(255, 105, 180, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.3);
-            }
-            50% { 
-                transform: rotate(-45deg) scale(1.05); 
-                box-shadow: 0 0 60px rgba(255, 105, 180, 1), inset 0 0 40px rgba(255, 255, 255, 0.5);
-            }
-        }
-        
-        @keyframes heartShimmer {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-        }
-        
-        /* PERFECT PHOTO DISPLAY */
+        /* Optimized photo display */
         .photo-display {
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate3d(-50%, -50%, 0);
             width: clamp(240px, 65vw, 420px);
             height: clamp(200px, 55vw, 350px);
             border-radius: 25px;
             overflow: hidden;
             box-shadow: 
-                0 15px 40px rgba(0, 0, 0, 0.4),
-                0 0 20px rgba(255, 255, 255, 0.2);
-            border: 5px solid rgba(255, 255, 255, 0.9);
+                0 10px 30px rgba(0, 0, 0, 0.3),
+                0 0 15px rgba(255, 255, 255, 0.1);
+            border: 4px solid rgba(255, 255, 255, 0.9);
             background: #fff;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 10;
-        }
-        
-        .photo-display:hover {
-            transform: translate(-50%, -50%) scale(1.02);
-            box-shadow: 
-                0 20px 50px rgba(0, 0, 0, 0.5),
-                0 0 30px rgba(255, 255, 255, 0.3);
+            will-change: transform;
         }
         
         .slideshow-container {
@@ -321,7 +238,7 @@
             object-position: center;
             border-radius: 20px;
             display: none;
-            transition: opacity 0.8s ease-in-out;
+            will-change: opacity;
         }
         
         .slide.active {
@@ -345,14 +262,15 @@
             border-radius: 50%;
             background: rgba(255, 255, 255, 0.6);
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             border: 2px solid rgba(255, 105, 180, 0.8);
+            will-change: transform;
         }
         
         .dot.active,
         .dot:hover {
             background: rgba(255, 105, 180, 0.9);
-            transform: scale(1.3);
+            transform: scale(1.2);
         }
         
         .slide-btn {
@@ -367,17 +285,17 @@
             border-radius: 50%;
             font-size: 18px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             z-index: 20;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            will-change: transform;
         }
         
-        .slide-btn:hover {
-            background: rgba(255, 105, 180, 1);
-            transform: translateY(-50%) scale(1.1);
+        .slide-btn:active {
+            transform: translateY(-50%) scale(0.9);
         }
         
         .slide-btn.prev {
@@ -388,7 +306,7 @@
             right: 15px;
         }
         
-        /* PERFECT CAPTIONS */
+        /* Optimized captions - simpler animation */
         .rotating-captions {
             margin: 40px auto 0;
             height: 70px;
@@ -407,36 +325,27 @@
             font-weight: 400;
             color: #FFFFFF;
             text-shadow: 
-                0 0 15px rgba(139, 0, 139, 0.8),
-                0 0 25px rgba(139, 0, 139, 0.6),
-                2px 2px 6px rgba(0, 0, 0, 0.5);
+                0 0 10px rgba(139, 0, 139, 0.6),
+                1px 1px 3px rgba(0, 0, 0, 0.4);
             opacity: 0;
             position: absolute;
             width: 100%;
             text-align: center;
-            animation: captionFade 20s infinite;
+            animation: captionFade 16s infinite;
             line-height: 1.3;
             z-index: 10;
+            will-change: opacity;
         }
         
         .caption:nth-child(1) { animation-delay: 0s; }
-        .caption:nth-child(2) { animation-delay: 5s; }
-        .caption:nth-child(3) { animation-delay: 10s; }
-        .caption:nth-child(4) { animation-delay: 15s; }
+        .caption:nth-child(2) { animation-delay: 4s; }
+        .caption:nth-child(3) { animation-delay: 8s; }
+        .caption:nth-child(4) { animation-delay: 12s; }
         
         @keyframes captionFade {
-            0%, 100% { 
-                opacity: 0; 
-                transform: translateY(20px) scale(0.9); 
-            }
-            5%, 20% { 
-                opacity: 1; 
-                transform: translateY(0) scale(1); 
-            }
-            25% { 
-                opacity: 0; 
-                transform: translateY(-20px) scale(0.9); 
-            }
+            0%, 100% { opacity: 0; }
+            6%, 19% { opacity: 1; }
+            25% { opacity: 0; }
         }
         
         .music-player {
@@ -451,78 +360,44 @@
             height: clamp(60px, 12vw, 75px);
             border-radius: 50%;
             background: linear-gradient(135deg, #FF69B4 0%, #DDA0DD 50%, #FF1493 100%);
-            background-size: 200% 200%;
             border: 3px solid rgba(255, 255, 255, 0.8);
             color: white;
             font-size: clamp(22px, 5vw, 30px);
             cursor: pointer;
-            box-shadow: 
-                0 10px 25px rgba(255, 105, 180, 0.6),
-                0 0 20px rgba(255, 105, 180, 0.3);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.4);
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             touch-action: manipulation;
-            animation: musicButtonGlow 4s ease-in-out infinite alternate;
-        }
-        
-        @keyframes musicButtonGlow {
-            from { 
-                background-position: 0% 50%;
-                box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6), 0 0 20px rgba(255, 105, 180, 0.3);
-            }
-            to { 
-                background-position: 100% 50%;
-                box-shadow: 0 10px 35px rgba(255, 105, 180, 0.8), 0 0 30px rgba(255, 105, 180, 0.5);
-            }
+            will-change: transform;
         }
         
         .music-btn:active {
             transform: scale(0.9);
         }
         
-        .music-btn:hover {
-            transform: scale(1.1) rotate(10deg);
-            box-shadow: 
-                0 15px 35px rgba(255, 105, 180, 0.8),
-                0 0 30px rgba(255, 105, 180, 0.5);
-        }
-        
         .music-btn.playing {
-            animation: musicPulse 1s ease-in-out infinite, musicButtonGlow 4s ease-in-out infinite alternate;
-        }
-        
-        @keyframes musicPulse {
-            0%, 100% { 
-                transform: scale(1);
-                box-shadow: 0 10px 25px rgba(255, 105, 180, 0.6), 0 0 20px rgba(255, 105, 180, 0.3);
-            }
-            50% { 
-                transform: scale(1.15);
-                box-shadow: 0 15px 40px rgba(255, 105, 180, 1), 0 0 40px rgba(255, 105, 180, 0.7);
-            }
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
         }
         
         .touch-sparkle {
             position: fixed;
             pointer-events: none;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 20px;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 18px;
             z-index: 1000;
-            animation: touchSparkleDisappear 1.5s ease-out forwards;
+            animation: touchSparkleDisappear 1s ease-out forwards;
         }
         
         @keyframes touchSparkleDisappear {
             0% { 
                 opacity: 1; 
                 transform: scale(1) rotate(0deg); 
-                filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
             }
             100% { 
                 opacity: 0; 
-                transform: scale(0.2) rotate(360deg) translateY(-50px); 
-                filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.4));
+                transform: scale(0.3) rotate(180deg) translateY(-30px); 
             }
         }
         
@@ -530,8 +405,12 @@
             display: none;
         }
         
-        /* MOBILE OPTIMIZATIONS */
+        /* MOBILE OPTIMIZATIONS - Disable heavy effects */
         @media (max-width: 768px) {
+            body {
+                background: linear-gradient(135deg, #FFB6C1 0%, #DDA0DD 100%);
+            }
+            
             .container {
                 padding: 20px 15px 80px;
             }
@@ -539,6 +418,7 @@
             .title {
                 font-size: clamp(28px, 7vw, 38px);
                 margin-bottom: 30px;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
             }
             
             .heart-frame {
@@ -569,6 +449,15 @@
             .dot {
                 width: 10px;
                 height: 10px;
+            }
+            
+            /* Disable floating elements on small screens for performance */
+            .floating-elements {
+                display: none;
+            }
+            
+            .dreamy-aura {
+                display: none;
             }
         }
         
@@ -624,7 +513,44 @@
             }
         }
         
-        /* LANDSCAPE OPTIMIZATIONS */
+        /* Desktop only - keep some animations */
+        @media (min-width: 769px) {
+            .title {
+                animation: titleGlow 4s ease-in-out infinite alternate;
+            }
+            
+            @keyframes titleGlow {
+                from { 
+                    text-shadow: 
+                        0 0 15px rgba(255, 105, 180, 0.8),
+                        2px 2px 6px rgba(0, 0, 0, 0.5);
+                }
+                to { 
+                    text-shadow: 
+                        0 0 25px rgba(255, 105, 180, 1),
+                        2px 2px 8px rgba(0, 0, 0, 0.6);
+                }
+            }
+            
+            .photo-container {
+                animation: photoFloat 8s ease-in-out infinite;
+            }
+            
+            @keyframes photoFloat {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+            
+            .heart-shape {
+                animation: heartPulse 4s ease-in-out infinite;
+            }
+            
+            @keyframes heartPulse {
+                0%, 100% { transform: rotate(-45deg) scale(1); }
+                50% { transform: rotate(-45deg) scale(1.03); }
+            }
+        }
+        
         @media (orientation: landscape) and (max-height: 500px) {
             .container {
                 padding: 15px 20px 50px;
@@ -656,6 +582,7 @@
             }
         }
         
+        /* Performance optimizations */
         @media (prefers-reduced-motion: reduce) {
             *, *::before, *::after {
                 animation-duration: 0.01ms !important;
@@ -664,6 +591,21 @@
             
             .floating-elements {
                 display: none;
+            }
+        }
+        
+        /* Low-end device optimizations */
+        @media (max-width: 480px) and (max-height: 800px) {
+            .heart-shape {
+                box-shadow: 0 0 20px rgba(255, 105, 180, 0.4);
+            }
+            
+            .photo-display {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            }
+            
+            .title {
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
             }
         }
     </style>
@@ -686,9 +628,9 @@
                 <div class="photo-display">
                     <div class="slideshow-container">
                         <img src="assets/fav_optimized.jpg" alt="My favorite picture of you 1" class="slide active" loading="lazy" />
-                        <img src="assets/p4.jpg" alt="My favorite picture of you 2" class="slide" loading="lazy" />
-                        <img src="assets/p7.jpg" alt="My favorite picture of you 3" class="slide" loading="lazy" />
-                        <img src="assets/p1.jpg" alt="My favorite picture of you 4" class="slide" loading="lazy" />
+                        <img src="assets/photo2.jpg" alt="My favorite picture of you 2" class="slide" loading="lazy" />
+                        <img src="assets/photo3.jpg" alt="My favorite picture of you 3" class="slide" loading="lazy" />
+                        <img src="assets/photo4.jpg" alt="My favorite picture of you 4" class="slide" loading="lazy" />
                     </div>
                     
                     <div class="slideshow-dots">
@@ -729,37 +671,35 @@
         let dots = [];
         let autoSlideTimeout = null;
         
+        // Optimized floating elements - fewer for mobile
         function createFloatingElements() {
             const container = document.getElementById('floatingElements');
-            const elementCount = isMobile ? 6 : 12;
             
-            for (let i = 0; i < Math.floor(elementCount * 0.4); i++) {
+            // Only create floating elements on desktop or larger tablets
+            if (window.innerWidth < 768) {
+                return; // Skip on mobile for performance
+            }
+            
+            const elementCount = window.innerWidth < 1024 ? 4 : 8;
+            
+            // Simplified sparkles
+            for (let i = 0; i < elementCount / 2; i++) {
                 const sparkle = document.createElement('div');
                 sparkle.className = 'sparkle';
                 sparkle.innerHTML = '✨';
                 sparkle.style.left = Math.random() * 100 + '%';
-                sparkle.style.animationDelay = Math.random() * 10 + 's';
-                sparkle.style.animationDuration = (Math.random() * 5 + 8) + 's';
+                sparkle.style.animationDelay = Math.random() * 8 + 's';
                 container.appendChild(sparkle);
             }
             
-            for (let i = 0; i < Math.floor(elementCount * 0.3); i++) {
+            // Simplified hearts
+            for (let i = 0; i < elementCount / 2; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'floating-heart';
                 heart.innerHTML = '💖';
                 heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 12 + 's';
-                heart.style.animationDuration = (Math.random() * 6 + 10) + 's';
+                heart.style.animationDelay = Math.random() * 10 + 's';
                 container.appendChild(heart);
-            }
-            
-            for (let i = 0; i < Math.floor(elementCount * 0.3); i++) {
-                const petal = document.createElement('div');
-                petal.className = 'petal';
-                petal.style.left = Math.random() * 100 + '%';
-                petal.style.animationDelay = Math.random() * 14 + 's';
-                petal.style.animationDuration = (Math.random() * 8 + 12) + 's';
-                container.appendChild(petal);
             }
         }
         
@@ -808,7 +748,7 @@
                 autoSlideTimeout = setTimeout(function() {
                     nextSlide();
                     startAutoSlideshow();
-                }, 4000);
+                }, 5000); // Increased interval for better performance
             }
         }
         
@@ -819,23 +759,26 @@
             startAutoSlideshow();
         }
         
+        // Throttled touch sparkle for better performance
+        let lastSparkleTime = 0;
         function createTouchSparkle(x, y) {
-            if (Math.random() > 0.4) return;
+            const now = Date.now();
+            if (now - lastSparkleTime < 500 || Math.random() > 0.5) return; // Throttle sparkles
+            lastSparkleTime = now;
             
-            const sparkles = ['✨', '💫', '⭐', '🌟', '💖'];
+            const sparkles = ['✨', '💫', '💖'];
             const sparkle = document.createElement('div');
             sparkle.className = 'touch-sparkle';
             sparkle.innerHTML = sparkles[Math.floor(Math.random() * sparkles.length)];
             sparkle.style.left = (x - 10) + 'px';
             sparkle.style.top = (y - 10) + 'px';
-            sparkle.style.color = `hsl(${Math.random() * 60 + 300}, 80%, 70%)`;
             document.body.appendChild(sparkle);
             
             setTimeout(() => {
                 if (document.body.contains(sparkle)) {
                     document.body.removeChild(sparkle);
                 }
-            }, 1500);
+            }, 1000);
         }
         
         function toggleMusic() {
@@ -887,7 +830,13 @@
             }, 3000);
         });
         
+        // Throttled touch events
+        let touchThrottle = false;
         document.addEventListener('touchstart', function(e) {
+            if (touchThrottle) return;
+            touchThrottle = true;
+            setTimeout(() => touchThrottle = false, 200);
+            
             const touch = e.touches[0];
             createTouchSparkle(touch.clientX, touch.clientY);
         }, { passive: true });
@@ -925,4 +874,3 @@
     </script>
 </body>
 </html>
-
